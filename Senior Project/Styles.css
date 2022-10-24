@@ -87,29 +87,24 @@ body{
   color: black;
 }
 
-.form-container{
-  margin-top: 20px;
-  position: absolute;
-  right: 35%;
-  left: 35%;
-  background-color:white;
-  height: 300px;
-  width : 300px;
-  border-style: solid;
-  border-width: 2px;
-  padding: 10px;
-  justify-items: center;
-}
 
-.form{
+
+.form-div{
+  width: min-content;
+  height: min-content;
   display: flex;
-  flex-direction: column;
-  column-gap: 10px;
+  justify-content: center;
+  margin: 50px auto 50px;
+  padding: 20px;
+  border: 2px solid;
+  font-size: 15px;
+  background-color: white;
 }
 
-.signup-tag, .login-tag{
-  font-size: 20px;
-  margin-left: 125px;
-}
 
+
+.form-control-lg{
+  line-height: 20px;
+  width: 200px; 
+}
 
