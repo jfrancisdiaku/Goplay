@@ -65,9 +65,9 @@ if (isset($_POST['signup-btn'])){
       $_SESSION['email'] = $email;
       $_SESSION['verified'] = $verified;
       // set flash message
-      $_SESSION['message'] = "You are now logged in";
+      $_SESSION['message'] = "you are now logged in";
       $_SESSION['alert-class'] = "alert-success";
-      header('location: Main-page.php');
+      header('location:homepage.php?success');
       exit();
     }
     else{
@@ -75,5 +75,51 @@ if (isset($_POST['signup-btn'])){
     }
 
   }
+}
+
+// if user clicks login button
+if (isset($_POST['login-btn'])){
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  // validation
+  if (empty($username)){
+    $errors['username'] = "Username required";
+  }
+  if (empty($password)){
+    $errors['password'] = "Password required";
+  }
+
+  if (count($errors) == 0){
+    $sql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $username, $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if (password_verify($password, $user['password'])){
+      //login succes
+      $user_id = $conn->insert_id;
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['verified'] = $user['verified'];
+        // set flash message
+        $_SESSION['message'] = "you are now logged in";
+        $_SESSION['alert-class'] = "alert-success";
+        header('location:homepage.php?success');
+        exit();
+
+    }else{
+      $errors['login_fail'] = "Wrong credentials";
+    }
+
+  }
+
+
+
+
+
 
 }

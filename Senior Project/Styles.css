@@ -1,110 +1,49 @@
 *{
   font-family: 'Bebas Neue', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  color: black;
 }
 
 body{
-  background-image: url(pictures/court.jpg);
-  background-position: top;
-  background-size: cover;
   height: auto;
 }
 
-.header{
-  margin-top:0;
-  margin-bottom: 20px;
-  display: flex;
-  right: 10px;
-  left: 10px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
+
+
+@media(min-width: 768px){
+  .news-input{
+    width: 50%;
+}
+
+
+
+.img-container{
+  width: 165px;
+  height: 165px;
   padding: 10px;
-  background-color: white;
-  border: solid;
-  border-width: 3px;
-  border-color: black;
-}
-
-.logo-section{
   display: flex;
-  height: 100px;
-  width: 300px;
-  align-items: center;
-  margin-left: 40px;
-}
-
-.logo{
-  height: 100px;
-  width: 200px;
-}
-
-.nav-section{
-  display: flex;
-  justify-content:space-between;
-  width: 200px;
-  margin-right: 50px;
-}
-
-.middle-section{
-  padding: 30px;
-  display:flex;
-  justify-content: center;
-  flex-direction: row;
-  height: 400px;
-  width: 2000;
-  border-radius: 20px;
-}
-
-.left-middle{
-  width: 500px;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  border-style: solid;
-  border-width: 2px;
-  background-color: white;
-}
-
-.right-middle{
-  width: 500px;
-  height: 200px;
-  background-color: red;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  border-radius: 20px;
-}
-
-.left-middle-text{
-  position:absolute;
-  font-size: 30px;
-  top:100px;
-  left: 50px;
-  color: black;
+  align-content: center;
 }
 
 
-
-.form-div{
-  width: min-content;
-  height: min-content;
-  display: flex;
-  justify-content: center;
-  margin: 50px auto 50px;
-  padding: 20px;
-  border: 2px solid;
-  font-size: 15px;
-  background-color: white;
+#map{
+  width: 100%;
+  height: 100%;
 }
 
-
-
-.form-control-lg{
-  line-height: 20px;
-  width: 200px; 
+.mapbox{
+  border-radius: 10px;
 }
 
+#map{
+  border-style: solid; 
+  width: 600px;
+  height: 300px;
+  border-radius: 5px;
+}
+
+.form-container{
+  border-style: solid; 
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+
+}
