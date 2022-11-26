@@ -20,6 +20,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
+    
+    <?php  
+      $toUser = '';       
+      if ( isset( $_GET['toUser'] ) && !empty( $_GET['toUser'] ) ){
+        $toUser = $_GET['toUser'];
+      }
+    ?>
+
 
     <!--Navbar-->
    <nav class="navbar navbar-expand-sm bg-white navbar-white py-3">
@@ -59,38 +67,50 @@
      </nav>
 
     <div class="container mx-auto row message-panel" align="center">
-      <div class="col-4 active-chats">
-        <h3>active chats</h3>
-        <div class="rounded d-flex text-center mb-3" style="border-style:solid;" >
-          <i class="las la-user-nurse" style="font-size: 50px;"></i>
-          <h4>karolina Sydor </h4>
+      
+      <div class="col-4 active-chats" id="active-chats">
+        <h3 style="color: white;">active chats</h3>
+
+        <div class="" id="chat-list">
+    
         </div>
+
+        
+
       </div>
-      <div class="col-6 chat-box p-2">
+
+      <div class="col-5 chat-box p-2">
 
         <form action="">
-          <label for="">to:</label>
-          <input type="text" id="toUser" value="">
+          <label style="color: white;"  for="">to:</label>
+          <input  type="text" class="toUser" id="toUser" placeholder="enter username" value="">
         </form>
       
         
-        <div class="rounded mb-2 d-flex mt-2 p-4 flex-column chat-area" id="chat-area" style="border-style:solid;  width: 350px; ">
+        <div class="flex-column chat-area" id="chat-area"></div>
 
-        </div>
+
         <form action="" class="typing-area" >
-          <input type="text" rows="10" cols="50" id="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+          <input type="text"  id="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
           <button class="send-btn btn btn-warning" id="send-btn">send</button>
         </form>
       </div>
     </div>
 
+    
     <script>
     //create event listener
     document.getElementById('send-btn').addEventListener
     ('click', sendMessage);
 
-    document.getElementById('toUser').addEventListener
-    ('mouseout', loadChat);
+  
+
+
+    window.onload = activeChat();
+
+    setInterval(loadChat,500);
+    
+    
     
     
     function sendMessage(e){
@@ -109,14 +129,14 @@
       if(this.status == 200){
         inputField.value = '';
         console.log(this.responseText);
+        gritt
         }
       }
         //sends request
         xhr.send(params);
       }
 
-      function loadChat(e){
-      e.preventDefault();
+      function loadChat(){
       var toUser = document.getElementById('toUser').value;
       var params = "toUser="+toUser;
       //create XHR Object
@@ -135,6 +155,31 @@
         xhr.send(params);
       }
 
+     function activeChat(){
+      //create XHR Object
+      var xhr = new XMLHttpRequest();
+      //OPEN - type, url/file, async
+      xhr.open('POST', 'activeChat.php', true);
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+
+      xhr.onload = function(){
+      if(this.status == 200){
+        document.getElementById('chat-list').innerHTML = this.responseText;
+        document.getElementById('chat-link').addEventListener("click", setUser(event));
+        }
+      }
+
+        //sends request
+        xhr.send();
+      }
+      
+     function setUser(e){
+      var toUser = "<?php echo $toUser ?>";
+      document.getElementById('toUser').value = toUser;
+      console.log(toUser);
+     }
+      
+      
 </script>
 
     

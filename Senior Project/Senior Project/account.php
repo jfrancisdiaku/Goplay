@@ -59,50 +59,108 @@
       </div>
      </nav>
 
-     <div class="container account-page">
-      <div class="row">
-          <div class="col-md-6 mt-3 offset-3 ">
-            <form action="">
-              <h3 class="text-center">Account Settings</h3>
-              
-              <div class="profile-pic-box"><span class="las la-user-circle profile-pic"></span></div>
-              <div class="py-2 form-group">
-                <label for="name">Update profile picture:</label>
-                <input type="file" class="form-control">
-              </div>
+     <div style="background-image: url('images/<?=$_SESSION['image']?>'); " 
+        class="profile-pic-box rounded-circle mx-auto mb-3" >
+      </div>
 
-              <div class="py-2 form-group">
-                <label for="name">Name: <?php echo $_SESSION['fname']. "&nbsp;" .$_SESSION['lname'];?></label>
-              </div>
-              <div class="py-2 form-group">
-                <label for="name">username: <?php echo $_SESSION['username']?></label>
-                <input type="text" class="form-control" placeholder="change username..">
-              </div>
+     <div class="container-fluid account-page">
+      <div class="row">
+        <h3 class="text-center">Account Settings</h3>
+        
+        <div class="col-md-6 mx-auto">
+        
+        <?php if(count($errors) > 0): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php foreach($errors as $error): ?>
+              <li><?php echo $error; ?></li>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+
+        <?php if(count($errors) == 0): ?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <li>Update Successful</li>
+          </div>
+        <?php endif; ?>
+
+        <?php if($locationUpdated): ?>
+          <div class="alert alert-success">
+              <li>Location Updated</li>
+          </div>
+        <?php endif; ?>
+
+        <?php if($picUpdated): ?>
+          <div class="alert alert-success">
+              <li>profile picture Updated</li>
+          </div>
+        <?php endif; ?>
+        
+        <div class="py-2 form-group">
+          <label for="name">Name: <?php echo $_SESSION['fname']. "&nbsp;" .$_SESSION['lname'];?></label>
+        </div>
+        <div class="py-2 form-group">
+          <label for="name">username: <?php echo $_SESSION['username']?></label>
+        </div>
+
+        <div class="d-flex mb-2" style="justify-content:space-between;">
+          <form action="account.php" enctype="multipart/form-data" id="photo-update" method="post">
+            <label for="name">Update profile picture:</label>
+            <input type="file" name="prof-pic">
+            <button class="btn btn-sm btn-success" name="update-pic">Update Picture</button>
+          </form>
+        </div>
+
+        <div class="py-2 form-group">
+          <label for="name">Update location:</label>
+          <input  onclick="getLocation()" type="checkbox" name="permisssion" value="agree">I give GoPlay permission to use my location
+          <button name="update-location-btn" type="submit" class="update-location-btn btn btn-warning btn"><span class="las la-location-arrow"></span></button>
+        </div>
+        <input type="hidden" name="latitude" value="">
+        <input type="hidden" name="longitude" value="" >
+
+          <div class="mt-3">
+            
+            <form id="update-form" class="update-form" action="account.php" method="post">
               <div class="py-2 form-group">
                 <label for="name">update Description: </label>
-                <textarea placeholder="<?php echo $_SESSION['descrip']?>" class="form-control" ></textarea>
+                <textarea id="descrip" name="descrip" value="<?php echo $_SESSION['descrip']?>" placeholder="" class="form-control" ><?php echo $_SESSION['descrip']?></textarea>
               </div>
               <div class="py-2 form-group">
                 <label for="name">email: <?php echo $_SESSION['email']?></label>
-                <input type="email" class="form-control" placeholder="change email..">
+                <input type="email" id="email" name="email" value="<?php echo $_SESSION['email'];?>" class="form-control" placeholder="change email..">
               </div>
-              <div class="py-2 form-group">
-                <label for="name">Update location:</label>
-                <button class="update-location-btn btn btn-warning btn"><span class="las la-location-arrow"></span></button>
-              </div>
+              
               <div class="py-2 form-group">
                 <label for="name">change password:</label>
-                <input type="email" class="form-control" placeholder="new password..">
-                <input type="email" class="form-control" placeholder="confirm password..">
+                <input type="password" name="password" id="password" class="form-control" placeholder="new password..">
+                <input type="password" name="passwordConf" id="passwordConf" class="form-control" placeholder="confirm password..">
               </div>
               <div class="form-group">
-                <button class="update-btn btn btn-primary btn-lg">update</button>
+                <button type="submit" name="update-btn" id="update-btn" class="update-btn btn btn-primary btn-lg">update</button>
               </div>
             </form>
+          </div>
+
+            
           </div>
         </div>
       </div>
      </div>
+
+     <script type="text/JavaScript">
+        // get users location
+        function getLocation(){
+          if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition)
+          }
+        }
+        function showPosition(position){
+          document.querySelector('.update-form input[name = "latitude"]').value = position.coords.latitude;
+          document.querySelector('.update-form input[name = "longitude"]').value = position.coords.longitude;
+        }  
+
+      </script>
+
     
   </body>
 </html>

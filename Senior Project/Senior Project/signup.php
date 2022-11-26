@@ -50,7 +50,7 @@
       <div class="container d-flex align-items-center pb-5">
         
           <div class="form-container">
-            <form class="signup-form" action="signup.php" enctype="multipart/form-data" method="post">
+            <form class="signup-form" action="signup.php" enctype="multipart/form-data" method="POST">
               <h3 class="text-center">Register</h3>
               
               <?php if(count($errors) > 0): ?>
@@ -60,6 +60,7 @@
                   <?php endforeach; ?>
                 </div>
               <?php endif; ?>
+
 
               <div class="form-group">
                 <label for="first">First name:</label>
@@ -78,7 +79,7 @@
               
               <div class=" mt-2 mb-2 form-group">
                 <label for="">Profile picture:&nbsp;</label>
-                <input type="file" name="file" id="image" value="">
+                <input type="file" name="image" id="image" value="">
               </div>
     
               <div class="form-group">
@@ -93,7 +94,7 @@
 
               <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="text" name="password" class="form-control">
+                <input type="password" name="password" class="form-control">
               </div>
 
               <div class="form-group">

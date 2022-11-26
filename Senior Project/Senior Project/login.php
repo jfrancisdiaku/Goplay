@@ -44,7 +44,7 @@
               <a href="login.php" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
-              <a href="homepage.php" class="nav-link">Register</a>
+              <a href="signup.php" class="nav-link">Register</a>
             </li>
           </ul>
         </div>
@@ -73,7 +73,7 @@
 
               <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="text" name="password" class="form-control">
+                <input type="password" name="password" class="form-control">
               </div>
 
               <div class=" p-2 form-group">

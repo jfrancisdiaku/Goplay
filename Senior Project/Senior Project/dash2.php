@@ -45,7 +45,7 @@
               <a href="messages.php" class="nav-link">messages</a>
             </li>
             <li class="nav-item">
-              <a href="login.php" class="nav-link">search</a>
+              <a href="search-users.php" class="nav-link">search</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><?php echo $_SESSION['username']; ?></a>
@@ -59,24 +59,20 @@
       </div>
      </nav>
 
-    <div class="container p-3" align="center" >
+    <div class="dash container p-3" align="center" >
       <div class="row dashboard-panel">
         <div class="dashLink col">
           <a href="search-users.php" class="dashIcon las la-search-plus"></a>
-          <span>Search</span>
         </div>
         <div class="dashLink col">
           <a href="messages.php" class="dashIcon las la-comments"></a>
-          <span>Messages</span>
         </div>
         <div class="w-100"></div>
         <div class="dashLink col">
           <a href="account.php" class="dashIcon las la-user-circle"></a>
-          <span>Account</span>
         </div>
         <div class="dashLink col">
           <a href="login.php" class="dashIcon las la-sign-out-alt"></a>
-          <span>Logout</span>
         </div>
       </div>
     </div>
